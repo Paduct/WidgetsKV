@@ -1,0 +1,19 @@
+<SeparatorLine@Widget>:
+    rgba: (1, 1, 1, 1)
+    canvas:
+        Color:
+            rgba: self.rgba
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+<HSeparatorLine@SeparatorLine>:
+    size_hint_y: None
+    height: dp(1)
+
+
+<VSeparatorLine@SeparatorLine>:
+    size_hint_x: None
+    width: dp(1)

@@ -1,0 +1,23 @@
+#:import Factory kivy.factory.Factory
+
+
+<PanelBar@ActionBar>:
+    pos_hint: {'top': 1}
+
+    ActionView:
+        use_separator: True
+
+        ActionPrevious:
+            title: app.title
+            app_icon: app.icon
+            app_icon_height: 50
+            app_icon_width: 50
+            on_press: Factory.AboutDialog().open()
+
+        MenuBar:
+            text: 'Menu'
+            mode: 'spinner'
+
+            ActionButton:
+                text: 'Quit'
+                on_press: app.stop()

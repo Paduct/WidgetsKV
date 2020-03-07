@@ -1,0 +1,54 @@
+#:import os os
+
+
+<PathChooser@Popup>:
+    title: 'Directory or file chooser'
+    auto_dismiss: False
+    size_hint: (0.9, 0.9)
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            padding: 10
+
+            Label:
+                size_hint_x: None
+                text: 'Path choose:'
+
+            TextInput:
+                id: inputs
+                text: chooser.path
+                multiline: False
+
+            Switch:
+                size_hint_x: None
+                on_active: chooser.view_mode = 'list' if self.active else 'icon'
+
+        HSeparatorLine
+
+        FileChooser:
+            id: chooser
+            path: os.path.expanduser('~')
+            on_submit: inputs.text = self.selection and self.selection[0] or ''
+
+            FileChooserIconLayout
+            FileChooserListLayout
+
+        HSeparatorLine
+
+        BoxLayout:
+            size_hint_y: None
+            height: 60
+            spacing: 10
+            padding: 10
+
+            Button:
+                text: 'Ok'
+                on_press: app.impl_path_chooser(inputs.text), root.dismiss()
+
+            Button:
+                text: 'Cancel'
+                on_press: root.dismiss()

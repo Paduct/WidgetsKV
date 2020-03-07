@@ -1,0 +1,65 @@
+#:import web webbrowser
+
+
+<_Label@Label>:
+    size_hint_y: None
+    height: 30
+    halign: 'center'
+
+
+<AboutDialog@Popup>:
+    title: f'About {app.title}'
+    auto_dismiss: False
+    size_hint: (None, None)
+    size: (350, 450)
+
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 5
+
+        Image:
+            size_hint_y: None
+            height: 100
+            source: app.icon
+
+        _Label:
+            bold: True
+            text: app.title
+
+        _Label:
+            text: app.version
+
+        _Label:
+            height: 50
+            text: app.description
+
+        _Label:
+            markup: True
+            text: f'[ref=]Project link[/ref]'
+            underline: True
+            color: (0, 1, 0, 1)
+            on_ref_press: web.open(app.project_link)
+
+        _Label:
+            text: f'All rights reserved © {app.create_year}'
+            font_size: 12
+
+        _Label:
+            markup: True
+            font_size: 12
+            underline: True
+            color: (0, 1, 0, 1)
+            text: f'[ref=]License link[/ref]'
+            on_ref_press: web.open(app.license_link)
+
+        HSeparatorLine:
+            rgba: root.separator_color
+            height: root.separator_height
+
+        Button:
+            size_hint_y: None
+            size_hint_x: None
+            pos_hint: {'right': 1}
+            height: 40
+            text: 'Close'
+            on_press: root.dismiss()

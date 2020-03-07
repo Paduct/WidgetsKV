@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+
+# IDE
+.*project/
+
+# Setup
+build/
+*.egg*
+
+# KDE
+.directory
